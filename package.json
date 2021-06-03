@@ -1,5 +1,5 @@
 {
-  "name": "OllieChat",
+  "name": "olliechat",
   "version": "0.0.1",
   "description": "```\r Secure chat\r ```",
   "main": "server.js",
