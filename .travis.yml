@@ -1,4 +1,4 @@
-languages:
-  - html
-  - js
-  - css
+language: html
+npm:
+  - express
+  - ejs
