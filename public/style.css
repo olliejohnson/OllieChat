@@ -60,3 +60,18 @@ li .active:hover {
     font-family: "Open Sans", sans-serif;
     background-color: #eee;
 }
+
+.btn {
+    border: none;
+    text-decoration: none;
+    background-color: #333;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #111;
+}
+
+.nav-form {
+    display: inline;
+}
