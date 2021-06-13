@@ -24,6 +24,7 @@ io.on("connection", socket => {
     socket.join(user.room)
 
     socket.emit("message", m.formatMessage(botName, "Welcome to ChatCord!"))
+    socket.emit("message", m.loadMessages())
 
     socket.broadcast
       .to(user.room)

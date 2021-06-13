@@ -15,12 +15,10 @@ function saveMessage(message, room) {
   messages.push(message)
 }
 
-function loadMessages() {
-  return messages
-}
+function loadMessages() {}
 
 module.exports = {
-  "formatMessage": formatMessage,
-  "saveMessage": saveMessage,
-  "loadMessages": loadMessages
+  formatMessage: formatMessage,
+  saveMessage: saveMessage,
+  loadMessages: loadMessages,
 }
