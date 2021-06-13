@@ -13,6 +13,8 @@ const {
 const server = http.createServer(app)
 const io = socket(server)
 
+const messages = []
+
 app.use(express.static("public"))
 
 const botName = "ChatCord Bot"
@@ -40,8 +42,10 @@ io.on("connection", socket => {
 
   socket.on("chatMessage", msg => {
     const user = getCurrentUser(socket.id)
+    const newMessage = formatMessage(user.username, msg)
+    saveMessage(newMessage, user.room)
 
-    io.to(user.room).emit("message", formatMessage(user.username, msg))
+    io.to(user.room).emit("message", newMessage)
   })
 
   socket.on("disconnect", () => {
