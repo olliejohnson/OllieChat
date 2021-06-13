@@ -15,7 +15,9 @@ function saveMessage(message, room) {
   messages.push(message)
 }
 
-function loadMessages() {}
+function loadMessages() {
+  return messages
+}
 
 module.exports = {
   formatMessage: formatMessage,

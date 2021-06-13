@@ -15,7 +15,7 @@ const io = socket(server)
 
 app.use(express.static("public"))
 
-const botName = "ChatCord Bot"
+const botName = "OllieChat Bot"
 
 io.on("connection", socket => {
   socket.on("joinRoom", ({ username, room }) => {
@@ -23,8 +23,13 @@ io.on("connection", socket => {
 
     socket.join(user.room)
 
-    socket.emit("message", m.formatMessage(botName, "Welcome to ChatCord!"))
-    socket.emit("message", m.loadMessages())
+    socket.emit("message", m.formatMessage(botName, "Welcome to OllieChat!"))
+
+    const oldMessages = m.loadMessages()
+
+    for (const msg of oldMessages) {
+      socket.emit("message", msg)
+    }
 
     socket.broadcast
       .to(user.room)
