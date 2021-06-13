@@ -25,7 +25,7 @@ io.on("connection", socket => {
 
     socket.emit("message", m.formatMessage(botName, "Welcome to OllieChat!"))
 
-    const oldMessages = m.loadMessages()
+    const oldMessages = m.loadMessages(user.room)
 
     for (const msg of oldMessages) {
       socket.emit("message", msg)

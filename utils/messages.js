@@ -8,14 +8,17 @@ function formatMessage(username, text) {
   }
 }
 
-let messages = []
+let messages = {}
 
 function saveMessage(message, room) {
-  messages.push(message)
+  messages[room].push(message)
 }
 
 function loadMessages(room) {
-  return messages
+  if (!(room in messages)) {
+    messages[room] = []
+  }
+  return messages[room]
 }
 
 module.exports = {
