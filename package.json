@@ -1,30 +1,21 @@
 {
-  "name": "olliechat",
-  "version": "0.0.1",
-  "description": "```\r Secure chat\r ```",
+  "name": "chat-cord",
+  "version": "1.0.0",
+  "description": "",
   "main": "server.js",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "socket.io": "^4.1.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  },
   "scripts": {
     "devStart": "nodemon server.js",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/olliejohnson/OllieChat.git"
+  "keywords": [],
+  "author": "Olliejohnson",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "socket.io": "^4.1.2"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/olliejohnson/OllieChat/issues"
-  },
-  "homepage": "https://github.com/olliejohnson/OllieChat#readme"
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }

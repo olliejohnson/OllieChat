@@ -1,21 +1,64 @@
 const express = require("express")
-const passport = require("passport")
+const http = require("http")
 const app = express()
-const io = require("socket.io")
-const jade = require("ejs")
+const socket = require("socket.io")
+const formatMessage = require("./utils/messages")
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+} = require("./utils/users")
+
+const server = http.createServer(app)
+const io = socket(server)
+
 app.use(express.static("public"))
-app.engine("html", require("ejs").renderFile)
 
-app.post("/login", passport.authenticate("local"), function (req, res) {
-  res.redirect("/users/" + req.user.username)
+const botName = "ChatCord Bot"
+
+io.on("connection", socket => {
+  socket.on("joinRoom", ({ username, room }) => {
+    const user = userJoin(socket.id, username, room)
+
+    socket.join(user.room)
+
+    socket.emit("message", formatMessage(botName, "Welcome to ChatCord!"))
+
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "message",
+        formatMessage(botName, `${user.username} has joined the chat`)
+      )
+
+    io.to(user.room).emit("roomUsers", {
+      room: user.room,
+      users: getRoomUsers(user.room),
+    })
+  })
+
+  socket.on("chatMessage", msg => {
+    const user = getCurrentUser(socket.id)
+
+    io.to(user.room).emit("message", formatMessage(user.username, msg))
+  })
+
+  socket.on("disconnect", () => {
+    const user = userLeave(socket.id)
+
+    if (user) {
+      io.to(user.room).emit(
+        "message",
+        formatMessage(botName, `${user.username} has left the chat`)
+      )
+
+      io.to(user.room).emit("roomUsers", {
+        room: user.room,
+        users: getRoomUsers(user.room),
+      })
+    }
+  })
 })
 
-app.get("/", (req, res) => {
-  res.render("index.html")
-})
-
-app.get("/login", (req, res) => {
-  res.render("login.html")
-})
-
-app.listen(80)
+server.listen(process.env.PORT || 3000)
