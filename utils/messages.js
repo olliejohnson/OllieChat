@@ -8,4 +8,8 @@ function formatMessage(username, text) {
   }
 }
 
+function saveMessage(message, room) {
+
+}
+
 module.exports = formatMessage
