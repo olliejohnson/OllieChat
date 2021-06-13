@@ -14,7 +14,7 @@ function saveMessage(message, room) {
   messages.push(message)
 }
 
-function loadMessages() {
+function loadMessages(room) {
   return messages
 }
 
