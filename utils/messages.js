@@ -11,7 +11,6 @@ function formatMessage(username, text) {
 let messages = []
 
 function saveMessage(message, room) {
-  console.log(message)
   messages.push(message)
 }
 
