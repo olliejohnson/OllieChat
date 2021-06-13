@@ -13,8 +13,6 @@ const {
 const server = http.createServer(app)
 const io = socket(server)
 
-const messages = []
-
 app.use(express.static("public"))
 
 const botName = "ChatCord Bot"
