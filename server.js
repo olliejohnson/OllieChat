@@ -2,7 +2,7 @@ const express = require("express")
 const http = require("http")
 const app = express()
 const socket = require("socket.io")
-const formatMessage = require("./utils/messages")
+const m = require("./utils/messages")
 const {
   userJoin,
   getCurrentUser,
@@ -23,13 +23,13 @@ io.on("connection", socket => {
 
     socket.join(user.room)
 
-    socket.emit("message", formatMessage(botName, "Welcome to ChatCord!"))
+    socket.emit("message", m.formatMessage(botName, "Welcome to ChatCord!"))
 
     socket.broadcast
       .to(user.room)
       .emit(
         "message",
-        formatMessage(botName, `${user.username} has joined the chat`)
+        m.formatMessage(botName, `${user.username} has joined the chat`)
       )
 
     io.to(user.room).emit("roomUsers", {
@@ -40,8 +40,8 @@ io.on("connection", socket => {
 
   socket.on("chatMessage", msg => {
     const user = getCurrentUser(socket.id)
-    const newMessage = formatMessage(user.username, msg)
-    saveMessage(newMessage, user.room)
+    const newMessage = m.formatMessage(user.username, msg)
+    m.saveMessage(newMessage, user.room)
 
     io.to(user.room).emit("message", newMessage)
   })
@@ -52,7 +52,7 @@ io.on("connection", socket => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        formatMessage(botName, `${user.username} has left the chat`)
+        m.formatMessage(botName, `${user.username} has left the chat`)
       )
 
       io.to(user.room).emit("roomUsers", {

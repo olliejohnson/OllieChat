@@ -8,6 +8,19 @@ function formatMessage(username, text) {
   }
 }
 
-function saveMessage(message, room) {}
+let messages = []
 
-module.exports = formatMessage
+function saveMessage(message, room) {
+  console.log(message)
+  messages.push(message)
+}
+
+function loadMessages() {
+  return messages
+}
+
+module.exports = {
+  "formatMessage": formatMessage,
+  "saveMessage": saveMessage,
+  "loadMessages": loadMessages
+}
