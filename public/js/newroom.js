@@ -1,10 +1,3 @@
-const IsPrivate = document.getElementById("isprivate")
-const Room = document.getElementById("room")
+const socket = io()
 
-function Submit() {
-  if (IsPrivate.checked) {
-    alert("Checked")
-  } else {
-    alert("Unchecked")
-  }
-}
+const Room = document.getElementById("room")

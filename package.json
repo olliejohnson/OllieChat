@@ -1,6 +1,6 @@
 {
-  "name": "chat-cord",
-  "version": "1.0.0",
+  "name": "ollie-chat",
+  "version": "0.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -9,10 +9,12 @@
   },
   "keywords": [],
   "author": "Olliejohnson",
-  "license": "MIT",
+  "license": "C",
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "socket.io": "^4.1.2"
   },
   "devDependencies": {
